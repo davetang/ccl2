@@ -100,10 +100,10 @@ for_edger_consensus_cluster$id <- paste(for_edger_consensus_cluster$chr,
 					sep="_")
 
 #set threshold for independent filtering
-rowsum_threshold <- 4
+rowsum_threshold <- 20
 
 #set p-value threshold for all analyses
-cutoff <- 0.01
+cutoff <- 0.05
 
 #preparing object for edgeR
 d2 <- for_edger_count
