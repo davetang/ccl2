@@ -4,7 +4,6 @@
 #which should be as BAM files
 #the names of the BAM files need to end with *F512.bam
 #F512 means reads not passing QC
-#testing pull request
 
 #load CAGEr library
 library(CAGEr)
