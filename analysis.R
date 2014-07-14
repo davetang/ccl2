@@ -5,6 +5,18 @@
 #the names of the BAM files need to end with *F512.bam
 #F512 means reads not passing QC
 
+#install package if missing
+required_package <- c('CAGEr', 'BSgenome.Hsapiens.UCSC.hg19')
+my_check <- required_package %in% installed.packages()[,"Package"]
+if(!my_check[1]){
+   source("http://bioconductor.org/biocLite.R")
+   biocLite('CAGEr')
+}
+if(!my_check[2]){
+   source("http://bioconductor.org/biocLite.R")
+   biocLite('BSgenome.Hsapiens.UCSC.hg19')
+}
+
 #load CAGEr library
 library(CAGEr)
 
