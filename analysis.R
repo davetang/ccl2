@@ -6,15 +6,22 @@
 #F512 means reads not passing QC
 
 #install package if missing
-required_package <- c('CAGEr', 'BSgenome.Hsapiens.UCSC.hg19')
+required_package <- c('CAGEr', 'BSgenome.Hsapiens.UCSC.hg19', 'biomaRt', 'edgeR', 'GenomicFeatures', 'GenomicRanges', 'GO.db', 'GOstats', 'org.Hs.eg.db', 'multicore')
 my_check <- required_package %in% installed.packages()[,"Package"]
-if(!my_check[1]){
+#if one of the Bioconductor packages are missing
+#load the biocLite.R
+if(all(my_check[1:9]) == FALSE){
    source("http://bioconductor.org/biocLite.R")
-   biocLite('CAGEr')
 }
-if(!my_check[2]){
-   source("http://bioconductor.org/biocLite.R")
-   biocLite('BSgenome.Hsapiens.UCSC.hg19')
+#function for installing Bioconductor packages
+install_package <- function(x){
+   biocLite(x)
+}
+#install the missing Bioconductor packages
+sapply(required_package[which(!my_check[1:9])], install_package)
+#install the multicore package if missing
+if(!my_check[10]){
+   install.packages("multicore", repos='http://cran.us.r-project.org')
 }
 
 #load CAGEr library
@@ -313,7 +320,7 @@ data2$gs <- entrez_symbol[data2$gene,2]
 #Gene Ontology Enrichment Analysis
 #load libraries
 library(GO.db)
-library("GOstats")
+library(GOstats)
 
 #tag clusters differentially expressed with the CCL2 condition
 up_ccl2_2 <- row.names(subset(data2, FDR<cutoff & logFC>0 & oc>0))
