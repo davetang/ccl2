@@ -1,5 +1,5 @@
 #Entire analysis performed on CCL2 CAGE libraries
-#please email me@davetang.org to comment or ask questions
+#please email davetingpongtang @ gmail.com to comment or ask questions
 #save this script, analysis.R, in the same directory as the 6 aligned libraries
 #which should be as BAM files
 #the names of the BAM files need to end with *F512.bam
